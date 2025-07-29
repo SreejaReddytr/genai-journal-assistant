@@ -63,7 +63,7 @@ affirm_chain = LLMChain(llm=llm, prompt=affirm_prompt)
 tools = [
     Tool(name="generate_learning_pathway", func=lambda r: learning_chain.run(role=r), description="Career roadmap"),
     Tool(name="search_open_roles", func=lambda r: job_chain.run(role=r), description="Find jobs"),
-    Tool(name="generate_meal_plan", func=lambda v_g: meal_chain.run(veggies=v_g.split('|')[0], goal=v_g.split('|')[1]), description="Meal plan"),
+    Tool(name="generate_meal_plan",func=lambda goal: meal_chain.run(veggies="mixed", goal=goal),description="Meal plan"),
     Tool(name="generate_affirmation", func=lambda e: affirm_chain.run(emotion=e), description="Motivational affirmation")
 ]
 
