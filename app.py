@@ -39,10 +39,14 @@ st.markdown(
 )
 
 # --- OpenAI Key Setup ---
-openai_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else st.text_input("🔐 Enter OpenAI API Key:", type="password")
-if not openai_key:
+
+
+if "OPENAI_API_KEY" not in st.session_state:
+    st.session_state["OPENAI_API_KEY"] = st.text_input("🔐 Enter OpenAI API Key:", type="password")
     st.stop()
-os.environ["OPENAI_API_KEY"] = openai_key
+
+os.environ["OPENAI_API_KEY"] = st.session_state["OPENAI_API_KEY"]
+
 
 # --- LLM Setup ---
 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
