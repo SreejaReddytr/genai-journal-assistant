@@ -7,6 +7,37 @@ from langchain.chains import LLMChain
 from langchain.agents import Tool, initialize_agent, AgentType
 import os
 
+# 🔥 Add this block to customize UI with emojis, pastel colors, animations
+st.markdown(
+    """
+    <style>
+    html, body, [class*="css"] {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f4f8;
+        color: #222;
+    }
+    .stApp {
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .emoji {
+        font-size: 2rem;
+        animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 openai_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else st.text_input("🔐 Enter OpenAI API Key:", type="password")
 if not openai_key:
     st.stop()
@@ -42,7 +73,8 @@ tools = [
 
 agent_executor = initialize_agent(tools=tools, llm=llm, agent=AgentType.OPENAI_FUNCTIONS, verbose=False)
 
-st.title("🧠 GenAI Journal Assistant")
+st.markdown("<h1 GenAI Journal Assistant</h1>", unsafe_allow_html=True)
+st.markdown("Helping you navigate your career, health, and emotions using the power of GenAI 🚀")
 query = st.text_area("What's on your mind today?", height=200)
 
 if st.button("Ask AI"):
