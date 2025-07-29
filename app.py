@@ -9,7 +9,7 @@ st.set_page_config(page_title="GenAI Journal Assistant", layout="wide")
 st.markdown("""
     <style>
     body {
-        background-color: #f4f9fd;
+        background-color:BLUE;
     }
     .stTextInput>div>div>input {
         font-size: 16px;
@@ -27,7 +27,13 @@ if not api_key:
     st.stop()
 
 # --- 🔗 LLM and Chains ---
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7, openai_api_key=api_key)
+
+llm = ChatOpenAI(
+    model_name="gpt-3.5-turbo",
+    temperature=0.7,
+    openai_api_key=st.secrets["OPENAI_API_KEY"]
+)
+
 
 learning_prompt = PromptTemplate(
     input_variables=["role"],
