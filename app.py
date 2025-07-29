@@ -27,11 +27,13 @@ if not api_key:
     st.stop()
 
 # --- 🔗 LLM and Chains ---
+openai_key = st.secrets["OPENAI_API_KEY"]
+os.environ["OPENAI_API_KEY"] = openai_key
 
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
 llm = ChatOpenAI(
     model_name="gpt-3.5-turbo",
-    temperature=0.7,
-    openai_api_key=st.secrets["OPENAI_API_KEY"]
+    temperature=0.7
 )
 
 
