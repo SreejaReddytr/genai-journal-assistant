@@ -19,7 +19,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("✨ GenAI Journal Assistant")
-st.subheader("Navigate your career, emotions, and health with the help of AI 💡")
+st.subheader("Navigate your career, emotions, and meal  with the help of AI 💡")
 
 # --- 🔐 Use deployed secret API Key ---
 if "OPENAI_API_KEY" not in st.secrets:
